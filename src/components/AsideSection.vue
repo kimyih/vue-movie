@@ -5,16 +5,8 @@
     </div>
     <div class="menu">
       <ul>
-        <li>메뉴1</li>
-        <li>메뉴2</li>
-        <li>메뉴3</li>
+        <li v-for="genre in genres" :key="genre" class="menu-item">{{ genre }}</li>
       </ul>
-    </div>
-    <div class="genres">
-      <h3>장르</h3>
-      <div class="genre-tags">
-        <span v-for="genre in genres" :key="genre" class="genre-tag">{{ genre }}</span>
-      </div>
     </div>
   </aside>
 </template>
@@ -34,13 +26,14 @@ const genres = [
   top: 0;
   width: 260px;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #181818; /* 어두운 배경색 설정 */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* 위에서부터 시작 */
   overflow: hidden; /* 숨겨진 오버플로우 추가 */
+  color: #fff; /* 텍스트 색상 흰색으로 설정 */
 
   .logo {
     text-align: center;
@@ -52,43 +45,18 @@ const genres = [
   }
 
   .menu {
-    flex-grow: 1;
+    flex-grow: 1; /* 나머지 공간을 채우도록 설정 */
     overflow-y: auto; /* 스크롤 추가 */
-    margin-bottom: 20px;
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
       li {
         padding: 10px 0;
         cursor: pointer;
+        color: #fff; /* 텍스트 색상 흰색으로 설정 */
         &:hover {
-          background-color: #e5e5e5;
-        }
-      }
-    }
-  }
-
-  .genres {
-    h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .genre-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 40px;
-
-      .genre-tag {
-        background-color: #ffffff90;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        padding: 5px 10px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        &:hover {
-          background-color: #e0e0e0;
+          background-color: #333; /* 호버 시 배경색 어둡게 설정 */
         }
       }
     }

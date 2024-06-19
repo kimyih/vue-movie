@@ -20,11 +20,11 @@
 #header {
   position: fixed;
   top: 0;
-  left: 300px; /* aside와 맞추기 위해 left 위치 조정 */
+  left: 260px; /* aside와 맞추기 위해 left 위치 조정 */
   right: 0;
   height: 60px;
   padding: 10px 20px;
-  background-color: #66666690;
+  background-color: #181818; /* 어두운 배경색 설정 */
   color: #fff;
   display: flex;
   align-items: center;
@@ -58,6 +58,8 @@
         padding: 0 15px;
         font-size: 1rem;
         margin-right: 10px;
+        background-color: #333; /* 입력 필드 배경색 어둡게 설정 */
+        color: #fff; /* 입력 필드 텍스트 색상 흰색으로 설정 */
       }
 
       .search-icon {

@@ -148,6 +148,7 @@
         display: flex;
         align-items: flex-start;
         padding: 30px;
+
         
         .back-button { // 뒤로가기 버튼 스타일
           font-size: 1.5rem;

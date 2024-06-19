@@ -131,11 +131,15 @@ const goToMovieDetail = (id) => {
 </template>
 
 <style lang="scss">
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
 #main {
   min-height: 90vh;
   margin-left: 260px;
   position: relative;
   padding: 20px;
+  background-color: #181818; // 어두운 배경색 설정
+  color: #fff; // 텍스트 색상 흰색으로 설정
 
   .container {
     padding: 2rem;
@@ -147,6 +151,7 @@ const goToMovieDetail = (id) => {
       h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
+        color: #fff; // 텍스트 색상 흰색으로 설정
       }
       .swiper-container {
         width: 100%;
@@ -171,12 +176,14 @@ const goToMovieDetail = (id) => {
           }
           .banner-info {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
+            bottom: 0px;
+            width: 100%;
+            // left: 10px;
             padding: 1rem;
-            background-color: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to top, rgba(0.7, 0.7, 0.9, 0.9), rgba(0, 0, 0, 0));
             color: #fff;
-            border-radius: 10px;
+            height: 100px;
+            // border-radius: 10px;
             h3 {
               margin: 0;
               font-size: 1.5rem;
@@ -194,9 +201,11 @@ const goToMovieDetail = (id) => {
       h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
+        color: #fff; // 텍스트 색상 흰색으로 설정
       }
       .category-buttons {
         margin-bottom: 1.5rem;
+        display: flex;
         button {
           margin-right: 1rem;
           padding: 0.5rem 1rem;
@@ -204,9 +213,8 @@ const goToMovieDetail = (id) => {
           cursor: pointer;
           border: none;
           border-radius: 50px;
-          background-color: #ffffff00;
+          background-color: #333;
           color: #ff5656;
-          border: 1px solid #ff5656;
           &:hover {
             background-color: #ff5656;
             color: #fff;
@@ -227,8 +235,8 @@ const goToMovieDetail = (id) => {
             min-width: 200px;
             border-radius: 10px;
             overflow: hidden;
-            overflow-x: scroll;
             cursor: pointer; /* 클릭 가능한 영화 카드 */
+            background-color: #333; // 카드 배경색 어둡게 설정
             img {
               width: 100%;
               height: 300px;
@@ -236,14 +244,15 @@ const goToMovieDetail = (id) => {
             .movie-info {
               padding: 1rem;
               height: 130px;
-              background-color: #fff;
+              background-color: #232323; // 정보 배경색 어둡게 설정
               h3 {
                 margin: 0;
                 font-size: 1.2rem;
+                color: #fff; // 텍스트 색상 흰색으로 설정
               }
               p {
                 margin: 0.5rem 0 0;
-                color: #555;
+                color: #bbb; // 텍스트 색상 밝은 회색으로 설정
               }
             }
           }
