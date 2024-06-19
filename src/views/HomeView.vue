@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import HeaderSection from '@/components/HeaderSection.vue'
 import AsideSection from '@/components/AsideSection.vue'
+import { useRouter } from 'vue-router'
 
 // Swiper.js와 필요한 모듈을 가져옵니다.
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -59,6 +60,14 @@ const changeCategory = (category) => {
     currentCategoryMovies.value = latestMovies.value
   }
 }
+
+// Router 사용 설정
+const router = useRouter()
+
+// 영화 상세 정보 페이지로 이동하는 함수
+const goToMovieDetail = (id) => {
+  router.push({ name: 'movieDetail', params: { id } })
+}
 </script>
 
 <template>
@@ -77,7 +86,7 @@ const changeCategory = (category) => {
           class="swiper-container"
         >
           <!-- 최신 영화 데이터를 반복하여 큰 배너 형식으로 표시합니다. -->
-          <SwiperSlide v-for="movie in latestMovies" :key="movie.id">
+          <SwiperSlide v-for="movie in latestMovies" :key="movie.id" @click="goToMovieDetail(movie.id)">
             <div class="banner-card">
               <img
                 :src="'https://image.tmdb.org/t/p/w1280' + movie.backdrop_path"
@@ -102,7 +111,7 @@ const changeCategory = (category) => {
         </div>
         <div class="category">
           <div class="movie-list">
-            <div class="movie-card" v-for="movie in currentCategoryMovies" :key="movie.id">
+            <div class="movie-card" v-for="movie in currentCategoryMovies" :key="movie.id" @click="goToMovieDetail(movie.id)">
               <img
                 :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
                 :alt="movie.title"
@@ -125,6 +134,7 @@ const changeCategory = (category) => {
   min-height: 90vh;
   margin-left: 260px;
   position: relative;
+  padding: 20px;
 
   .container {
     padding: 2rem;
@@ -144,6 +154,7 @@ const changeCategory = (category) => {
           display: flex;
           justify-content: center;
           align-items: center;
+          cursor: pointer; /* 클릭 가능한 영화 카드 */
         }
         .banner-card {
           width: 100%;
@@ -184,18 +195,20 @@ const changeCategory = (category) => {
         margin-bottom: 1rem;
       }
       .category-buttons {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         button {
           margin-right: 1rem;
           padding: 0.5rem 1rem;
           font-size: 1rem;
           cursor: pointer;
           border: none;
-          border-radius: 5px;
-          background-color: #007bff;
-          color: #fff;
+          border-radius: 50px;
+          background-color: #ffffff00;
+          color: #ff5656;
+          border: 1px solid #ff5656;
           &:hover {
-            background-color: #0056b3;
+            background-color: #ff5656;
+            color: #fff;
           }
         }
       }
@@ -213,7 +226,8 @@ const changeCategory = (category) => {
             min-width: 200px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: scroll;
+            cursor: pointer; /* 클릭 가능한 영화 카드 */
             img {
               width: 100%;
               height: 300px;
