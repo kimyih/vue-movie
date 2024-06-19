@@ -72,6 +72,7 @@ const goToMovieDetail = (id) => {
 
 <template>
   <AsideSection />
+  <HeaderSection />
   <main id="main" role="main">
     <div class="container">
       <!-- 최신 영화 섹션 -->
@@ -234,6 +235,7 @@ const goToMovieDetail = (id) => {
             }
             .movie-info {
               padding: 1rem;
+              height: 130px;
               background-color: #fff;
               h3 {
                 margin: 0;

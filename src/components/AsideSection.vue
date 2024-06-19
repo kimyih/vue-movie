@@ -77,10 +77,11 @@ const genres = [
     .genre-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
+      margin-bottom: 40px;
 
       .genre-tag {
-        background-color: #fff;
+        background-color: #ffffff90;
         border: 1px solid #ccc;
         border-radius: 20px;
         padding: 5px 10px;
