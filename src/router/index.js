@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import DetailView from '@/views/DetailView.vue'
 import PersonDetail from '@/views/PersonDetail.vue'
+import GenreMovies from '@/views/GenreMovies.vue'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     path: '/person/:id', // 출연진 상세 정보 라우트 추가
     name: 'personDetail',
     component: PersonDetail
+  },
+  {
+    path: '/genre/:genre', // 장르 페이지 라우트 추가
+    name: 'genreMovies',
+    component: GenreMovies
   }
 ]
 

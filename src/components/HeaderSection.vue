@@ -20,7 +20,7 @@
 #header {
   position: fixed;
   top: 0;
-  left: 260px; /* aside와 맞추기 위해 left 위치 조정 */
+  left: 300px; /* aside와 맞추기 위해 left 위치 조정 */
   right: 0;
   height: 60px;
   padding: 10px 20px;
