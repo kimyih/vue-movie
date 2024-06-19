@@ -1,9 +1,9 @@
 <template>
-    <AsideSection />
+    <AsideSection @genre-selected="goToGenre" />
     <div class="genre-movies">
       <h1>{{ genre }} Movies</h1>
       <div class="movies">
-        <div v-for="movie in movies" :key="movie.id" class="movie-card">
+        <div v-for="movie in movies" :key="movie.id" class="movie-card" @click="goToMovieDetail(movie.id)">
           <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" :alt="movie.title" />
           <div class="movie-info">
             <h3>{{ movie.title }}</h3>
@@ -17,15 +17,16 @@
   
   <script setup>
   import { ref, onMounted } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
   import axios from 'axios'
-import AsideSection from '@/components/AsideSection.vue';
+  import AsideSection from '@/components/AsideSection.vue'
   
   const route = useRoute()
+  const router = useRouter()
   const genre = route.params.genre
   const movies = ref([])
   
-  const apiKey = import.meta.env.VITE_APP_API_KEY // 환경 변수 사용
+  const apiKey = import.meta.env.VITE_APP_API_KEY
   
   const genreMap = {
     "SF": 878,
@@ -64,33 +65,44 @@ import AsideSection from '@/components/AsideSection.vue';
     }
   }
   
+  const goToGenre = (selectedGenre) => {
+    router.push({ name: 'genreMovies', params: { genre: selectedGenre } })
+  }
+  
+  const goToMovieDetail = (id) => {
+    router.push({ name: 'movieDetail', params: { id } })
+  }
+  
   onMounted(fetchMovies)
   </script>
   
   <style lang="scss">
   .genre-movies {
+    position: relative;
+    left: 260px; /* Aside와 맞추기 위해 left 위치 조정 */
     padding: 20px;
     color: #000;
     background-color: #f5f5f5;
-    
+    min-height: 100vh;
+  
     h1 {
       font-size: 2rem;
       margin-bottom: 20px;
     }
   
     .movies {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
     }
   
     .movie-card {
-      width: 200px;
       background-color: #fff;
       border-radius: 10px;
       overflow: hidden;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer; /* 클릭 가능하도록 설정 */
   
       img {
         width: 100%;
@@ -99,18 +111,18 @@ import AsideSection from '@/components/AsideSection.vue';
   
       .movie-info {
         padding: 10px;
-        
+  
         h3 {
           font-size: 1.2rem;
           margin: 10px 0;
           color: #333;
         }
-        
+  
         p {
           font-size: 1rem;
           color: #666;
         }
-        
+  
         .rating {
           margin-top: 10px;
           font-size: 1rem;
