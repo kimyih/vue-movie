@@ -117,6 +117,17 @@ Movie Chart는 최신 영화, 인기 영화, 장르별 영화를 쉽게 검색�
 
 <br>
 
+## 스크린샷 
+
+![image](https://github.com/kimyih/vue-movie/assets/163376151/d60e90fb-5cee-4eaf-b458-02219c3e682b)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/85766581-8b24-4b84-baec-3b5c223241a7)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/076180f1-0b6b-434f-8596-1763ecde2ca3)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/44bf4ac8-0ab3-4928-8ba8-17910cc746db)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/09316409-496a-4548-9c4e-d7872c34f071)
+
+
+<br>
+
 ## 주요 기능
 - 최신 영화, 인기 영화, 높은 평점 영화를 확인할 수 있는 기능
 - 장르별 영화 목록을 볼 수 있는 기능
