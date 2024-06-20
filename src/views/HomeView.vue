@@ -178,12 +178,10 @@ const goToMovieDetail = (id) => {
             position: absolute;
             bottom: 0px;
             width: 100%;
-            // left: 10px;
             padding: 1rem;
             background: linear-gradient(to top, rgba(0.7, 0.7, 0.9, 0.9), rgba(0, 0, 0, 0));
             color: #fff;
             height: 100px;
-            // border-radius: 10px;
             h3 {
               margin: 0;
               font-size: 1.5rem;
@@ -232,19 +230,30 @@ const goToMovieDetail = (id) => {
             display: none; /* Webkit 기반 브라우저에서 스크롤바를 숨깁니다. */
           }
           .movie-card {
+            position: relative;
             min-width: 200px;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer; /* 클릭 가능한 영화 카드 */
             background-color: #333; // 카드 배경색 어둡게 설정
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 트랜지션 추가 */
+            
             img {
               width: 100%;
               height: 300px;
+              transition: transform 0.3s ease; /* 트랜지션 추가 */
             }
             .movie-info {
               padding: 1rem;
               height: 130px;
-              background-color: #232323; // 정보 배경색 어둡게 설정
+              background: linear-gradient(to top, rgba(0.7, 0.7, 0.9, 0.9), rgba(0, 0, 0, 0));
+              position: absolute; /* 절대 위치 설정 */
+              bottom: 0;
+              left: 0;
+              right: 0;
+              transition: transform 0.3s ease, opacity 0.3s ease; /* 트랜지션 추가 */
+              transform: translateY(100%); /* 기본적으로 숨김 */
+              opacity: 0; /* 기본적으로 투명 */
               h3 {
                 margin: 0;
                 font-size: 1.2rem;
@@ -255,10 +264,25 @@ const goToMovieDetail = (id) => {
                 color: #bbb; // 텍스트 색상 밝은 회색으로 설정
               }
             }
+            
+            &:hover {
+              transform: scale(1.05); /* 호버 시 확대 */
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 호버 시 그림자 효과 추가 */
+
+              img {
+                transform: scale(1.1); /* 호버 시 이미지 확대 */
+              }
+
+              .movie-info {
+                transform: translateY(0); /* 호버 시 정보 표시 */
+                opacity: 1; /* 호버 시 투명도 제거 */
+              }
+            }
           }
         }
       }
     }
   }
 }
+
 </style>

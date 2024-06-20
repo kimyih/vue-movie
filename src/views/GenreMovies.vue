@@ -113,6 +113,8 @@ watch(() => route.params.genre, (newGenre) => {
     img {
       width: 100%;
       height: auto;
+      max-height: 300px;
+      object-fit: cover;
     }
 
     .movie-info {
