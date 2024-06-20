@@ -1,7 +1,7 @@
 <template>
   <AsideSection @genre-selected="goToGenre" />
   <div class="genre-movies">
-    <h1>{{ genre }} Movies</h1>
+    <!-- <h1>{{ genre }} Movies</h1> -->
     <div class="movies">
       <div v-for="movie in movies" :key="movie.id" class="movie-card" @click="goToMovieDetail(movie.id)">
         <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" :alt="movie.title" />
@@ -82,24 +82,35 @@ watch(() => route.params.genre, (newGenre) => {
 </script>
 
 <style lang="scss">
+
+body {
+  background-color: var(--mainBg);
+  color: var(--white);
+  margin: 0;
+  padding: 0;
+}
+
+
+
 .genre-movies {
   width: calc(100% - 300px);
   position: relative;
   left: 300px; /* Aside와 맞추기 위해 left 위치 조정 */
   // margin: 20px;
-  color: #000;
-  background-color: #f5f5f5;
+  color: #ffffff;
+  background-color:#181818;
   min-height: 100vh;
 
   h1 {
     font-size: 2rem;
     margin-bottom: 20px;
+    color: var(--white);
   }
 
   .movies {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 30px;
   }
 
   .movie-card {
@@ -107,7 +118,7 @@ watch(() => route.params.genre, (newGenre) => {
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer; /* 클릭 가능하도록 설정 */
 
     img {

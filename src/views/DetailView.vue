@@ -145,8 +145,8 @@ onMounted(() => {
     margin: 0 auto;
     background-color: rgba(245, 245, 245, 0.9);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: var(--fontG);
 
     .header {
       display: flex;
@@ -233,7 +233,7 @@ onMounted(() => {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           }
 
           .cast-name {
@@ -269,7 +269,7 @@ onMounted(() => {
         background-color: #000;
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
 
         .close {
