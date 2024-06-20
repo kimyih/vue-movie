@@ -1,8 +1,8 @@
 # API를 이용한 영화 사이트 만들기 
 
+ https://movie-vue-kyh.web.app
 
-
-## 세팅 하기 
+## 첫세팅 하기 
 
 <details>
  <summary>초기세팅 접기/펼치기</summary>
@@ -107,6 +107,85 @@ npm run build
 
 -> 빌드를 하면 웹사이트 주소를 만들 수 있음.
 
+  
+ </div>
+</details>
+
+<details>
+ <summary>Firebase 세팅 접기/펼치기</summary>
+ <div markdown="1">
+
+### 첫시작
+
+01. 사이트 접속    
+https://firebase.google.com/?_gl=1*jnj97q*_up*MQ..*_ga*Mzg0OTEyNDUyLjE3MTg4NTIyMzk.*_ga_CW55HF8NVT*MTcxODg1MjIzOS4xLjAuMTcxODg1MjIzOS4wLjAuMA..&hl=ko&authuser=1
+
+02.  시작하기 클릭    
+![image](https://github.com/kimyih/vue-movie/assets/163376151/692c6351-d89c-41e7-a448-ab4402c1d019)
+
+03. 새 프로젝트 만들기 -> 프로젝트명 입력 (중복되지 않게 설정)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/f8cff8aa-3d6c-4d88-aef1-fd129662d300)
+
+04. 계정 선택 / 로그인
+
+### Firebase 호스팅 설정
+
+```
+sudo npm install -g firebase-tools
+```
+-> Firebase 호스팅으로 사이트를 호스팅하려면 Firebase CLI(명령줄 도구)가 필요합니다.
+
+```
+firebase login
+```
+-> 구글에 로그인 
+
+```
+firebase init
+```
+-> 프로젝트 시작 
+
+Allow Firebase to collect CLI and Emulator Suite usage and error reporting information? 
+->Yes
+
+```
+ Hosting: Configure files for Firebase 
+Hosting and (optionally) set up GitHub Action deploys
+```
+-> 선택   
+
+[Project Setup]
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we'll just set up a default project.
+
+? Please select an option: Use an existing project
+? Select a default Firebase project for this directory: movie-vue-kyh (Movie-vue-kyh)
+i  Using project movie-vue-kyh (Movie-vue-kyh)
+
+
+```
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index.html)? No
+? Set up automatic builds and deploys with GitHub? No
+✔  Wrote dist/404.html
+? File dist/index.html already exists. Overwrite? No
+i  Skipping write of dist/index.html
+```
+한국어
+``` 
+? 공용 디렉토리로 무엇을 사용하시겠습니까? dist
+? 단일 페이지 앱으로 구성(모든 URL을 /index.html로 다시 작성)? 아니요
+? GitHub로 자동 빌드 및 배포 설정? 아니요
+✔ dist/404.html 작성
+? 파일 dist/index.html이 이미 있습니다. 덮어쓰기?아니오
+dist/index.html 쓰기 생략
+```
+
+```
+firebase deploy
+```
+-> 명령어 입력하면 완료
   
  </div>
 </details>
