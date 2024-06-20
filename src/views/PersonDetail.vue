@@ -1,37 +1,39 @@
 <template>
-  <div class="person-detail">
-    <button class="back-button" @click="goBack">&#x2190;</button>
-    <div v-if="person">
-      <div class="header">
-        <img class="profile" :src="'https://image.tmdb.org/t/p/w500' + person.profile_path" :alt="person.name" />
-        <div class="info">
-          <h1>{{ person.name }}</h1>
-          <p><strong>생년월일:</strong> {{ person.birthday }}</p>
-          <p><strong>출생지:</strong> {{ person.place_of_birth }}</p>
-          <p><strong>직업:</strong> {{ person.known_for_department }}</p>
-          <p><strong>약력:</strong> {{ person.biography }}</p>
-          <div v-if="socialLinks.length" class="social-links">
-            <h3>Follow on:</h3>
-            <div class="links">
-              <a v-for="link in socialLinks" :key="link.name" :href="link.url" target="_blank">
-                <i :class="link.iconClass"></i> {{ link.name }}
-              </a>
+  <div class="person_wrap">
+    <div class="person-detail">
+      <button class="back-button" @click="goBack">&#x2190;</button>
+      <div v-if="person">
+        <div class="header">
+          <img class="profile" :src="'https://image.tmdb.org/t/p/w500' + person.profile_path" :alt="person.name" />
+          <div class="info">
+            <h1>{{ person.name }}</h1>
+            <p><strong>생년월일:</strong> {{ person.birthday }}</p>
+            <p><strong>출생지:</strong> {{ person.place_of_birth }}</p>
+            <p><strong>직업:</strong> {{ person.known_for_department }}</p>
+            <p><strong>약력:</strong> {{ person.biography }}</p>
+            <div v-if="socialLinks.length" class="social-links">
+              <h3>Follow on:</h3>
+              <div class="links">
+                <a v-for="link in socialLinks" :key="link.name" :href="link.url" target="_blank">
+                  <i :class="link.iconClass"></i> {{ link.name }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="known-for">
+          <h2>Known For</h2>
+          <div class="known-for-list">
+            <div v-for="movie in knownFor" :key="movie.id" class="known-for-item" @click="goToMovieDetail(movie.id)">
+              <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '/path/to/default.jpg'" :alt="movie.title" />
+              <p>{{ movie.title }}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="known-for">
-        <h2>Known For</h2>
-        <div class="known-for-list">
-          <div v-for="movie in knownFor" :key="movie.id" class="known-for-item" @click="goToMovieDetail(movie.id)">
-            <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '/path/to/default.jpg'" :alt="movie.title" />
-            <p>{{ movie.title }}</p>
-          </div>
-        </div>
+      <div v-else>
+        <p>Loading...</p>
       </div>
-    </div>
-    <div v-else>
-      <p>Loading...</p>
     </div>
   </div>
 </template>
@@ -86,15 +88,28 @@ onMounted(fetchPerson)
 </script>
 
 <style lang="scss" scoped>
-.person-detail {
-  max-width: 900px;
-  margin: 0 auto;
+
+.person_wrap {
+  width: 100%;
+  height: 100vh;
+  background-color: #000; /* 배경색 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
-  background-color: #181818; // 어두운 배경
+  box-sizing: border-box;
+}
+
+.person-detail {
+  max-width: 1200px;
+  width: 100%;
+  background-color: #1f1f1f; /* 어두운 배경 */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  color: #fff; // 흰색 텍스트
+  color: #fff; /* 흰색 텍스트 */
+  padding: 40px;
+  box-sizing: border-box;
 
   .back-button {
     font-size: 1.5rem;
@@ -102,6 +117,7 @@ onMounted(fetchPerson)
     background: none;
     border: none;
     color: #007bff;
+    margin-bottom: 20px;
     &:hover {
       color: #0056b3;
     }
@@ -110,26 +126,26 @@ onMounted(fetchPerson)
   .header {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 30px;
+    margin-bottom: 30px;
 
     .profile {
       width: 200px;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .info {
       flex: 1;
 
       h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-bottom: 10px;
       }
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin: 10px 0;
       }
 
@@ -141,13 +157,13 @@ onMounted(fetchPerson)
         margin-top: 20px;
 
         h3 {
-          font-size: 1.2rem;
+          font-size: 1.5rem;
           margin-bottom: 10px;
         }
 
         .links {
           display: flex;
-          gap: 10px;
+          gap: 15px;
 
           a {
             color: #007bff;
@@ -173,7 +189,7 @@ onMounted(fetchPerson)
     margin-top: 30px;
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
@@ -181,6 +197,7 @@ onMounted(fetchPerson)
       display: flex;
       gap: 20px;
       overflow-x: auto;
+      padding-bottom: 10px;
 
       .known-for-item {
         min-width: 150px;

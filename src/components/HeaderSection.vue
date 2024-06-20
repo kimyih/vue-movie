@@ -1,3 +1,40 @@
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
+
+const searchQuery = ref('')
+const searchResults = ref([])
+const apiKey = '84e04d04d1d383b99ab8e6457dc398c6'
+const router = useRouter()
+
+const performSearch = async () => {
+  if (searchQuery.value.trim() === '') {
+    searchResults.value = []
+    return
+  }
+
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/search/movie`, {
+      params: {
+        api_key: apiKey,
+        query: searchQuery.value,
+        language: 'ko-KR'
+      }
+    })
+    searchResults.value = response.data.results
+  } catch (error) {
+    console.error(error)
+    searchResults.value = []
+  }
+}
+
+const goToMovieDetail = (id) => {
+  router.push({ name: 'movieDetail', params: { id } })
+  searchResults.value = [] // 검색 결과 초기화
+}
+</script>
+
 <template>
   <header id="header" role="banner">
     <div class="header__inner container">
@@ -5,10 +42,17 @@
         <h1></h1>
       </div>
       <div class="search">
-        <input type="search" placeholder="검색어를 입력해주세요!" />
-        <button class="search-icon">
-          <i class="fas fa-search"></i> <!-- Font Awesome 사용 -->
+        <input type="search" v-model="searchQuery" placeholder="검색어를 입력해주세요!" @input="performSearch" />
+        <button class="search-icon" @click="performSearch">
+          <i class="fas fa-search"></i>
         </button>
+        <div class="search-results" v-if="searchResults.length">
+          <ul>
+            <li v-for="result in searchResults" :key="result.id" @click="goToMovieDetail(result.id)">
+              {{ result.title }} ({{ result.release_date }})
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
@@ -49,6 +93,7 @@
     .search {
       display: flex;
       align-items: center;
+      position: relative;
 
       input {
         width: 300px;
@@ -63,7 +108,7 @@
       }
 
       .search-icon {
-        background-color: #007bff;
+        background-color: #007bff00;
         border: none;
         color: #fff;
         border-radius: 50%;
@@ -81,6 +126,32 @@
         
         i {
           font-size: 1.2rem;
+        }
+      }
+
+      .search-results {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1001;
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 10px;
+        }
+
+        li {
+          padding: 10px;
+          cursor: pointer;
+          &:hover {
+            background-color: #444;
+          }
         }
       }
     }

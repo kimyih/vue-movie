@@ -25,9 +25,10 @@ const genres = [
 const router = useRouter()
 
 const goToGenre = (genre) => {
-  router.push({ name: 'genreMovies', params: { genre } })
+  router.push({ name: genre === "Home" ? 'home' : 'genreMovies', params: { genre } })
 }
 </script>
+
 
 <style lang="scss">
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'); /* Font Awesome */
