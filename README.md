@@ -1,6 +1,12 @@
-# API를 이용한 영화
+# API를 이용한 영화 사이트 만들기 
 
-## 01 vue 설치
+ https://movie-vue-kyh.web.app
+
+## 첫세팅 하기 
+
+<details>
+ <summary>초기세팅 접기/펼치기</summary>
+ <div markdown="1">
 
 [vue.js]https://ko.vuejs.org/
 
@@ -87,6 +93,12 @@ npm install swiper
 npm install vue-router@4
 ```
 
+
+환경 변수 설정   
+```
+VITE_APP_API_KEY=your_tmdb_api_key
+```
+
 ## 빌드
 
 ```
@@ -94,3 +106,125 @@ npm run build
 ```
 
 -> 빌드를 하면 웹사이트 주소를 만들 수 있음.
+
+  
+ </div>
+</details>
+
+<details>
+ <summary>Firebase 세팅 접기/펼치기</summary>
+ <div markdown="1">
+
+### 첫시작
+
+01. 사이트 접속    
+https://firebase.google.com/?_gl=1*jnj97q*_up*MQ..*_ga*Mzg0OTEyNDUyLjE3MTg4NTIyMzk.*_ga_CW55HF8NVT*MTcxODg1MjIzOS4xLjAuMTcxODg1MjIzOS4wLjAuMA..&hl=ko&authuser=1
+
+02.  시작하기 클릭    
+![image](https://github.com/kimyih/vue-movie/assets/163376151/692c6351-d89c-41e7-a448-ab4402c1d019)
+
+03. 새 프로젝트 만들기 -> 프로젝트명 입력 (중복되지 않게 설정)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/f8cff8aa-3d6c-4d88-aef1-fd129662d300)
+
+04. 계정 선택 / 로그인
+
+### Firebase 호스팅 설정
+
+```
+sudo npm install -g firebase-tools
+```
+-> Firebase 호스팅으로 사이트를 호스팅하려면 Firebase CLI(명령줄 도구)가 필요합니다.
+
+```
+firebase login
+```
+-> 구글에 로그인 
+
+```
+firebase init
+```
+-> 프로젝트 시작 
+
+Allow Firebase to collect CLI and Emulator Suite usage and error reporting information? 
+->Yes
+
+```
+ Hosting: Configure files for Firebase 
+Hosting and (optionally) set up GitHub Action deploys
+```
+-> 선택   
+
+[Project Setup]
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we'll just set up a default project.
+
+? Please select an option: Use an existing project
+? Select a default Firebase project for this directory: movie-vue-kyh (Movie-vue-kyh)
+i  Using project movie-vue-kyh (Movie-vue-kyh)
+
+
+```
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index.html)? No
+? Set up automatic builds and deploys with GitHub? No
+✔  Wrote dist/404.html
+? File dist/index.html already exists. Overwrite? No
+i  Skipping write of dist/index.html
+```
+한국어
+``` 
+? 공용 디렉토리로 무엇을 사용하시겠습니까? dist
+? 단일 페이지 앱으로 구성(모든 URL을 /index.html로 다시 작성)? 아니요
+? GitHub로 자동 빌드 및 배포 설정? 아니요
+✔ dist/404.html 작성
+? 파일 dist/index.html이 이미 있습니다. 덮어쓰기?아니오
+dist/index.html 쓰기 생략
+```
+
+```
+firebase deploy
+```
+-> 명령어 입력하면 완료
+  
+ </div>
+</details>
+
+## 개요 
+Movie Chart는 최신 영화, 인기 영화, 장르별 영화를 쉽게 검색하고 확인 할 수 있는 웹 애플리케이션입니다.    
+이 프로젝트는 Vue.js 를 사용하여 개발되었으며, TMDb API 를 사용해 영화 데이터를 가져옵니다.     
+
+<br>
+
+## 스크린샷 
+
+![image](https://github.com/kimyih/vue-movie/assets/163376151/d60e90fb-5cee-4eaf-b458-02219c3e682b)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/85766581-8b24-4b84-baec-3b5c223241a7)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/076180f1-0b6b-434f-8596-1763ecde2ca3)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/44bf4ac8-0ab3-4928-8ba8-17910cc746db)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/09316409-496a-4548-9c4e-d7872c34f071)
+
+
+<br>
+
+## 주요 기능
+- 최신 영화, 인기 영화, 높은 평점 영화를 확인할 수 있는 기능
+- 장르별 영화 목록을 볼 수 있는 기능
+- 특정 영화의 상세 정보를 확인할 수 있는 기능
+- 출연진의 상세 정보를 확인할 수 있는 기능
+- 출연진의 주요 작품을 확인할 수 있는 기능
+
+<br>
+
+## 사용된 기술
+
+- Vue.js : 사용자 인터페이스를 구축하기 위한 프레임 워크
+- Vue.Router : 라우팅을 관리하기 위한 라이브러리
+- Axios: API를 호출하기 위한 HTTP 클라이언트
+- TMDb API : 영화 데이터 제공 
+
+
+
+
+
+
