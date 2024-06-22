@@ -2,10 +2,10 @@
 
  https://movie-vue-kyh.web.app
 
-## 첫세팅 하기 
+## 📣 첫세팅 하기
 
 <details>
- <summary>초기세팅 접기/펼치기</summary>
+ <summary> ❗️ 초기세팅 접기/펼치기</summary>
  <div markdown="1">
 
 [vue.js]https://ko.vuejs.org/
@@ -112,7 +112,7 @@ npm run build
 </details>
 
 <details>
- <summary>Firebase 세팅 접기/펼치기</summary>
+ <summary> 🔥 Firebase 세팅 접기/펼치기</summary>
  <div markdown="1">
 
 ### 첫시작
@@ -192,16 +192,38 @@ firebase deploy
 
 ## 개요 
 Movie Chart는 최신 영화, 인기 영화, 장르별 영화를 쉽게 검색하고 확인 할 수 있는 웹 애플리케이션입니다.    
-이 프로젝트는 Vue.js 를 사용하여 개발되었으며, TMDb API 를 사용해 영화 데이터를 가져옵니다.     
+이 프로젝트는 Vue.js 를 사용하여 개발되었으며, TMDb API 를 사용해 영화 데이터 및 방송 정보를 가져옵니다.     
 
 <br>
 
 ## 스크린샷 
 
-![image](https://github.com/kimyih/vue-movie/assets/163376151/d60e90fb-5cee-4eaf-b458-02219c3e682b)
+![image](https://github.com/kimyih/vue-movie/assets/163376151/59bad778-6f72-4602-9d31-2d3f1cae36b8)
+
+
+- 처음 들어왔을 때 뜨는 메인 화면 입니다.       
+  큰 배너로 지금 상영중인 작품들의 정보를 제공하며, 자동 슬라이드 형식입니다.
+
+  <br>
+
 ![image](https://github.com/kimyih/vue-movie/assets/163376151/85766581-8b24-4b84-baec-3b5c223241a7)
-![image](https://github.com/kimyih/vue-movie/assets/163376151/076180f1-0b6b-434f-8596-1763ecde2ca3)
-![image](https://github.com/kimyih/vue-movie/assets/163376151/44bf4ac8-0ab3-4928-8ba8-17910cc746db)
+
+- 바로 아래 카테고리가 총 3개가 있습니다.   
+Popular / Top Rated / Latest 총 3가지의 메뉴로 클릭시 바로 변경되어 정보를 알 수 있습니다.
+
+<br>
+
+![image](https://github.com/kimyih/vue-movie/assets/163376151/85f35f24-7119-4929-97c9-ec3772f3d0ce)
+
+- 영화를 클릭하면, 영화 제목, 평점, 개요, 트레일러, 감독, 주요 출연진들의 정보를 알 수 있습니다.
+
+<br>
+
+![image](https://github.com/kimyih/vue-movie/assets/163376151/a80fd4f3-dc96-47b6-a0c9-7e80ec81ffbc)
+
+- 출연진을 클릭하면 출연진의 정보와 sns 그리고 출연작품들을 알 수 있습니다.
+  출연 작품을 클릭해도 작품 정보가 뜹니다
+
 ![image](https://github.com/kimyih/vue-movie/assets/163376151/09316409-496a-4548-9c4e-d7872c34f071)
 
 
