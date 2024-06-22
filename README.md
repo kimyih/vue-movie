@@ -221,10 +221,15 @@ Popular / Top Rated / Latest 총 3가지의 메뉴로 클릭시 바로 변경되
 
 ![image](https://github.com/kimyih/vue-movie/assets/163376151/a80fd4f3-dc96-47b6-a0c9-7e80ec81ffbc)
 
-- 출연진을 클릭하면 출연진의 정보와 sns 그리고 출연작품들을 알 수 있습니다.
-  출연 작품을 클릭해도 작품 정보가 뜹니다
+- 출연진을 클릭하면 출연진의 정보와 sns 그리고 출연작품들을 알 수 있습니다.    
+  출연 작품들을 클릭하면 그 작품의 정보를 알 수 있습니다.
 
-![image](https://github.com/kimyih/vue-movie/assets/163376151/09316409-496a-4548-9c4e-d7872c34f071)
+<br>
+
+![image](https://github.com/kimyih/vue-movie/assets/163376151/dd85ef72-03b6-41c0-9152-c88c4701f2d4)
+
+- 검색창에 키워드를 쓰면 그 와 관련 된 영화 정보들이 나열 됩니다.
+
 
 
 <br>
