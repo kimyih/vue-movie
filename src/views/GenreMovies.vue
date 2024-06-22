@@ -140,7 +140,7 @@ body {
     }
 
     img {
-      width: 100%;
+      // width: 100%;
       height: 300px; /* 이미지 높이 고정 */
       object-fit: cover;
       border-radius: 5px;
