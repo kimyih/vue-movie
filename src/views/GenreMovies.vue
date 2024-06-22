@@ -1,7 +1,7 @@
 <template>
+  <HeaderSection />
   <AsideSection @genre-selected="goToGenre" />
   <div class="genre-movies">
-    <!-- <h1>{{ genre }} Movies</h1> -->
     <div class="movies">
       <div v-for="movie in movies" :key="movie.id" class="movie-card" @click="goToMovieDetail(movie.id)">
         <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" :alt="movie.title" />
@@ -20,6 +20,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 import AsideSection from '@/components/AsideSection.vue'
+import HeaderSection from '@/components/HeaderSection.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -56,7 +57,8 @@ const fetchMovies = async () => {
       params: {
         api_key: apiKey,
         with_genres: genreMap[genre.value],
-        language: 'ko-KR'
+        language: 'ko-KR',
+        include_adult: false // 성인 콘텐츠 제외
       }
     })
     movies.value = response.data.results
@@ -82,7 +84,6 @@ watch(() => route.params.genre, (newGenre) => {
 </script>
 
 <style lang="scss">
-
 body {
   background-color: var(--mainBg);
   color: var(--white);
@@ -90,15 +91,12 @@ body {
   padding: 0;
 }
 
-
-
 .genre-movies {
   width: calc(100% - 300px);
   position: relative;
   left: 300px; /* Aside와 맞추기 위해 left 위치 조정 */
-  // margin: 20px;
   color: #ffffff;
-  background-color:#181818;
+  background-color: #181818;
   min-height: 100vh;
 
   h1 {
@@ -110,36 +108,55 @@ body {
   .movies {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
+    gap: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 60px;
   }
 
   .movie-card {
-    background-color: #fff;
-    border-radius: 10px;
+    position: relative;
+    // border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer; /* 클릭 가능하도록 설정 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 추가 */
+
+    &:hover {
+      transform: scale(1.05); /* hover 시 커짐 효과 */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* hover 시 그림자 효과 */
+
+      .movie-info {
+        opacity: 1;
+      }
+    }
 
     img {
-      width: 100%;
-      height: auto;
-      max-height: 300px;
+      // width: 100%;
+      height: 300px; /* 이미지 높이 고정 */
       object-fit: cover;
+      border-radius: 5px;
     }
 
     .movie-info {
-      padding: 10px;
+      width: 100%; /* movie-card와 동일한 너비 */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(0.9, 0.9, 1, 1), rgba(0, 0, 0, 0));
+      color: #fff;
+      // padding: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      height: 130px;
 
       h3 {
         font-size: 1.2rem;
         margin: 10px 0;
-        color: #333;
       }
 
       p {
         font-size: 1rem;
-        color: #666;
       }
 
       .rating {

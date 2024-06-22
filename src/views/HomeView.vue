@@ -245,7 +245,7 @@ const goToMovieDetail = (id) => {
             }
             .movie-info {
               padding: 1rem;
-              height: 130px;
+              height: 90px;
               background: linear-gradient(to top, rgba(0.7, 0.7, 0.9, 0.9), rgba(0, 0, 0, 0));
               position: absolute; /* 절대 위치 설정 */
               bottom: 0;

@@ -1,4 +1,5 @@
 <template>
+  <HeaderSection />
   <div class="person_wrap">
     <div class="person-detail">
       <button class="back-button" @click="goBack">&#x2190;</button>
@@ -22,7 +23,7 @@
           </div>
         </div>
         <div class="known-for">
-          <h2>Known For</h2>
+          <h2>작품</h2>
           <div class="known-for-list">
             <div v-for="movie in knownFor" :key="movie.id" class="known-for-item" @click="goToMovieDetail(movie.id)">
               <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '/path/to/default.jpg'" :alt="movie.title" />

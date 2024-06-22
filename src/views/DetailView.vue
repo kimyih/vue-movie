@@ -99,6 +99,10 @@ const playTrailer = async () => {
   if (!trailerUrl.value) {
     await fetchTrailer()
   }
+  if (!trailerUrl.value) {
+    alert('트레일러 영상이 없습니다.')
+    return
+  }
   showModal.value = true
 }
 

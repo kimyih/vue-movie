@@ -1,6 +1,6 @@
 <template>
   <aside id="aside">
-    <div class="logo">
+    <div class="logo" @click="goToHome">
       <h2>🎬 Movie Chart</h2>
     </div>
     <div class="menu">
@@ -17,12 +17,18 @@
 import { useRouter } from 'vue-router'
 
 const genres = [
-  "Home","SF", "TV 영화", "가족", "공포", "다큐멘터리", "드라마", "로맨스", 
+  "SF", "TV 영화", "가족", "공포", "다큐멘터리", "드라마", "로맨스", 
   "모험", "미스터리", "범죄", "서부", "스릴러", "애니메이션", 
   "액션", "역사", "음악", "전쟁", "코미디", "판타지"
 ]
 
 const router = useRouter()
+
+// 로고 클릭 시 홈뷰로 이동하는 함수
+const goToHome = () => {
+  router.push({ name: 'home' })
+}
+
 
 const goToGenre = (genre) => {
   router.push({ name: genre === "Home" ? 'home' : 'genreMovies', params: { genre } })
@@ -51,6 +57,7 @@ const goToGenre = (genre) => {
 
   .logo {
     text-align: center;
+    cursor: pointer;
     margin-bottom: 20px;
     h2 {
       font-size: 1.5rem;

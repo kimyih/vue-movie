@@ -134,11 +134,16 @@ const goToMovieDetail = (id) => {
         top: 50px;
         left: 0;
         width: 100%;
-        background-color: #333;
+        max-height: 400px; /* 최대 높이 설정 */
+        background-color: #333333eb;
         color: #fff;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow-y: auto; /* 세로 스크롤 추가 */
         z-index: 1001;
+        &::-webkit-scrollbar {
+        display: none; /* Webkit 기반 브라우저에서 스크롤바를 숨깁니다 */
+        }
 
         ul {
           list-style: none;
