@@ -5,7 +5,7 @@
     </div>
     <div class="menu">
       <ul>
-        <li v-for="genre in genres" :key="genre" class="menu-item" @click="goToGenre(genre)">
+        <li v-for="genre in genres" :key="genre" :class="{'active': selectedGenre === genre}" @click="goToGenre(genre)">
           {{ genre }}
         </li>
       </ul>
@@ -14,27 +14,30 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const genres = [
-  "SF", "TV 영화", "가족", "공포", "다큐멘터리", "드라마", "로맨스", 
+  "SF", "가족", "공포", "다큐멘터리", "드라마", "로맨스", 
   "모험", "미스터리", "범죄", "서부", "스릴러", "애니메이션", 
   "액션", "역사", "음악", "전쟁", "코미디", "판타지"
 ]
 
 const router = useRouter()
+const route = useRoute()
+const selectedGenre = ref(route.params.genre || 'home')
 
 // 로고 클릭 시 홈뷰로 이동하는 함수
 const goToHome = () => {
+  selectedGenre.value = 'home'
   router.push({ name: 'home' })
 }
 
-
 const goToGenre = (genre) => {
-  router.push({ name: genre === "Home" ? 'home' : 'genreMovies', params: { genre } })
+  selectedGenre.value = genre
+  router.push({ name: 'genreMovies', params: { genre } })
 }
 </script>
-
 
 <style lang="scss">
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'); /* Font Awesome */
@@ -83,8 +86,9 @@ const goToGenre = (genre) => {
           background-color: #333; /* 호버 시 배경색 어둡게 설정 */
           color: #fff; /* 호버 시 텍스트 색상 흰색으로 설정 */
         }
-        i {
-          margin-right: 10px;
+        &.active {
+          background-color: #ff5656; /* 선택된 항목 배경색 설정 */
+          color: #fff; /* 선택된 항목 텍스트 색상 흰색으로 설정 */
         }
       }
     }

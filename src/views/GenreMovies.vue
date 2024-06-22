@@ -2,6 +2,7 @@
   <HeaderSection />
   <AsideSection @genre-selected="goToGenre" />
   <div class="genre-movies">
+    <h1>{{ genre }} Movies</h1>
     <div class="movies">
       <div v-for="movie in movies" :key="movie.id" class="movie-card" @click="goToMovieDetail(movie.id)">
         <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" :alt="movie.title" />
@@ -26,6 +27,7 @@ const route = useRoute()
 const router = useRouter()
 const genre = ref(route.params.genre)
 const movies = ref([])
+const selectedGenre = ref(route.params.genre)
 
 const apiKey = import.meta.env.VITE_APP_API_KEY
 
@@ -53,21 +55,28 @@ const genreMap = {
 
 const fetchMovies = async () => {
   try {
-    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
-      params: {
-        api_key: apiKey,
-        with_genres: genreMap[genre.value],
-        language: 'ko-KR',
-        include_adult: false // 성인 콘텐츠 제외
-      }
-    })
-    movies.value = response.data.results
+    let allMovies = []
+    for (let page = 1; page <= 3; page++) { // 3페이지까지 가져오기 (최대 60개 영화)
+      const response = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+        params: {
+          api_key: apiKey,
+          with_genres: genreMap[genre.value],
+          language: 'ko-KR',
+          include_adult: false, // 성인 콘텐츠 제외
+          page: page
+        }
+      })
+      allMovies = allMovies.concat(response.data.results)
+      if (allMovies.length >= 50) break // 최대 50개의 영화만 가져오기
+    }
+    movies.value = allMovies.slice(0, 50)
   } catch (error) {
     console.error(error)
   }
 }
 
 const goToGenre = (selectedGenre) => {
+  genre.value = selectedGenre
   router.push({ name: 'genreMovies', params: { genre: selectedGenre } })
 }
 
@@ -79,6 +88,7 @@ onMounted(fetchMovies)
 
 watch(() => route.params.genre, (newGenre) => {
   genre.value = newGenre
+  selectedGenre.value = newGenre // 추가
   fetchMovies()
 })
 </script>
@@ -111,12 +121,10 @@ body {
     gap: 20px;
     padding: 30px;
     box-sizing: border-box;
-    margin-top: 60px;
   }
 
   .movie-card {
     position: relative;
-    // border-radius: 10px;
     overflow: hidden;
     text-align: center;
     cursor: pointer; /* 클릭 가능하도록 설정 */
@@ -132,7 +140,7 @@ body {
     }
 
     img {
-      // width: 100%;
+      width: 100%;
       height: 300px; /* 이미지 높이 고정 */
       object-fit: cover;
       border-radius: 5px;
@@ -145,7 +153,6 @@ body {
       left: 0;
       background: linear-gradient(to top, rgba(0.9, 0.9, 1, 1), rgba(0, 0, 0, 0));
       color: #fff;
-      // padding: 10px;
       opacity: 0;
       transition: opacity 0.3s ease;
       height: 130px;

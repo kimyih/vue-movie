@@ -25,9 +25,9 @@
         <div class="known-for">
           <h2>작품</h2>
           <div class="known-for-list">
-            <div v-for="movie in knownFor" :key="movie.id" class="known-for-item" @click="goToMovieDetail(movie.id)">
-              <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '/path/to/default.jpg'" :alt="movie.title" />
-              <p>{{ movie.title }}</p>
+            <div v-for="item in knownFor" :key="item.id" class="known-for-item" @click="goToMovieDetail(item.id)">
+              <img :src="item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : '/path/to/default.jpg'" :alt="item.title || item.name" />
+              <p>{{ item.title || item.name }}</p>
             </div>
           </div>
         </div>
@@ -89,7 +89,6 @@ onMounted(fetchPerson)
 </script>
 
 <style lang="scss" scoped>
-
 .person_wrap {
   width: 100%;
   height: 100vh;

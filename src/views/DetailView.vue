@@ -10,6 +10,10 @@
           <p class="rating"><strong>평점:</strong> {{ movie.vote_average }} / 10</p>
           <p class="overview"><strong>개요:</strong> {{ movie.overview }}</p>
           <button class="trailer-button" @click="playTrailer">Play Trailer</button>
+          <div class="crew">
+          <h2>감독</h2>
+          <p>{{ director.name }}</p>
+        </div>
         </div>
       </div>
       <div class="cast-and-crew">
@@ -21,10 +25,7 @@
             <p class="cast-character">{{ actor.character }}</p>
           </div>
         </div>
-        <div class="crew">
-          <h2>Director</h2>
-          <p>{{ director.name }}</p>
-        </div>
+ 
       </div>
       <div v-if="showModal" class="modal" @click="closeModal">
         <div class="modal-content" @click.stop>
