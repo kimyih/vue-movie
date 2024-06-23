@@ -155,7 +155,7 @@ body {
       color: #fff;
       opacity: 0;
       transition: opacity 0.3s ease;
-      height: 130px;
+      height: 150px;
 
       h3 {
         font-size: 1.2rem;
